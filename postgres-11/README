@@ -1,0 +1,8 @@
+# Como crear el contenedor
+	Pasos a seguir para instalar el contenedor en mi ordenador:
+
+	1. Descargar este proyecto en tu equipo.
+	2. Ubicarte dentro de la carpeta del proyecto, cuando hagas un "dir" o "ls" deberías de poder ver el fichero del Dockerfile.
+	3. Ejecutar el comando "docker build -t nombre_imagen_que_quiero ." con el nombre deseado para la imagen, por ejemplo desarrollo.
+	4. Ejecutar el comando "docker run -d nombre_del_contenedor".
+	5. Al terminar tendras un servidor postgresql escuchando por el puerto 5432, los datos de acceso son usuario postgres y sin contraseña (cualquier contraseña es valida).
