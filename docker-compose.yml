@@ -35,7 +35,7 @@ services:
   # image: php:7.1-fpm
   # image: php:7.0-fpm
   php:
-    image: php:7.0-fpm
+    image: php:8.0-fpm
     ports:
       - "9000:9000"
     networks:
@@ -48,10 +48,11 @@ services:
 
 ### PostgreSQL ###########################################
   postgres:
-    build: ./postgres-11
+    build: ./postgres
     volumes:
         - postgres-data:/var/lib/postgresql/data
-        - ./postgres-11/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        - ./postgres/configuration:/etc/postgresql
     ports:
         - "5432:5432"
     environment:
@@ -61,5 +62,5 @@ services:
     networks:
         - frontend
         - backend
-    command: postgres -c config_file=/etc/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
 
