@@ -25,6 +25,8 @@ services:
     networks:
         - frontend
         - backend
+    depends_on:
+      - php
 
   ### PHP Server ###########################################
   # You can change the image to change version of php, for example:
