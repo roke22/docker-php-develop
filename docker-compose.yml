@@ -29,15 +29,15 @@ services:
       - php
 
   ### PHP Server ###########################################
-  # You can change the image to change version of php, for example:
-  # image: php:8.0-fpm
-  # image: php:7.4-fpm
-  # image: php:7.3-fpm
-  # image: php:7.2-fpm
-  # image: php:7.1-fpm
-  # image: php:7.0-fpm
+  # You can change the PHP version in .env with PHP_VERSION variable
+  # Supports: 8.3, 8.2, 8.1, 8.0, 7.4, 7.3, 7.2, etc.
   php:
-    image: php:8.0-fpm
+    build:
+      context: ./php
+      args:
+        - PHP_VERSION=${PHP_VERSION:-8.0}
+        - USER_ID=${USER_ID:-1000}
+        - GROUP_ID=${GROUP_ID:-1000}
     ports:
       - "9000:9000"
     networks:
@@ -67,12 +67,12 @@ services:
     command: postgres -c config_file=/etc/postgresql/postgresql.conf
 
 ### Redis ################################################
-    redis:
-        build: ./redis
-        volumes:
-            - .data/redis:/data
-        ports:
-            - "6379:6379"
-        networks:
-            - backend
-            - frontend
+  redis:
+      build: ./redis
+      volumes:
+          - .data/redis:/data
+      ports:
+          - "6379:6379"
+      networks:
+          - backend
+          - frontend

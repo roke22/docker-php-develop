@@ -1,1 +1,16 @@
+# Environment variables
 .env
+
+# Data directories
+.data/
+
+# IDE configuration
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
