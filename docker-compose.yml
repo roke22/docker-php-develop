@@ -66,3 +66,13 @@ services:
         - backend
     command: postgres -c config_file=/etc/postgresql/postgresql.conf
 
+### Redis ################################################
+    redis:
+        build: ./redis
+        volumes:
+            - .data/redis:/data
+        ports:
+            - "6379:6379"
+        networks:
+            - backend
+            - frontend
