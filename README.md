@@ -106,6 +106,47 @@ Puedes cambiar estas credenciales en el archivo `docker-compose.yml`.
 - **Host:** `redis` (desde contenedores) o `localhost` (desde host)
 - **Puerto:** `6379`
 
+## 🔐 Configuración SSL (HTTPS)
+
+El entorno soporta HTTPS para los dominios `dominio.roke.es`, `dominio2.roke.es` y `dominio3.roke.es`.
+
+### 1. Generar certificados
+
+Ejecuta el script de generación de certificados (requiere sudo para escribir en `nginx/ssl/` si fue creado por root):
+
+```bash
+sudo ./setup-ssl.sh
+```
+
+Reinicia Nginx para cargar los nuevos certificados:
+
+```bash
+docker-compose restart nginx
+```
+
+### 2. Confiar en el certificado en el navegador
+
+Al ser certificados autofirmados, el navegador mostrará una advertencia de seguridad. Debes importar el certificado manualmente.
+
+**Google Chrome / Chromium:**
+1. Ve a `chrome://settings/certificates`
+2. Pestaña **Autoridades** -> **Importar**
+3. Selecciona `nginx/ssl/server.crt`
+4. Marca **"Confiar en este certificado para identificar sitios web"**
+
+**Firefox:**
+1. Ajustes -> Privacidad y seguridad -> Certificados -> **Ver certificados**
+2. Pestaña **Autoridades** -> **Importar**
+3. Selecciona `nginx/ssl/server.crt`
+4. Marca **"Confiar en esta CA para identificar sitios web"**
+
+**Linux (Sistema):**
+Para herramientas de línea de comandos (`curl`, etc.):
+```bash
+sudo cp ./nginx/ssl/server.crt /usr/local/share/ca-certificates/roke-dev.crt
+sudo update-ca-certificates
+```
+
 ## 📁 Estructura del Proyecto
 
 ```
