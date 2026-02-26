@@ -3,6 +3,7 @@
 
 # Data directories
 .data/
+nginx/ssl/*
 
 # IDE configuration
 .idea/
