@@ -46,6 +46,8 @@ services:
       - ${APP_CODE_FIRST_PROJECT}:/var/www/html
       - ${APP_CODE_SECOND_PROJECT}:/var/www/html2
       - ${APP_CODE_THIRD_PROJECT}:/var/www/html3
+      # Persiste las sesiones/chats de Claude Code CLI entre reconstrucciones
+      - ./.data/claude:/home/devuser/.claude
 
 ### PostgreSQL ###########################################
   postgres:
